@@ -1,4 +1,5 @@
 /* 設定 body 擁有滿版的高度 */
+/* html 跟 body 要一起寫，才抓得到瀏覽器的高度 */
 html,
 body {
 	height: 100%;
@@ -6,14 +7,14 @@ body {
 
 body {
 	font-family: 'Noto Sans TC', sans-serif;
-	background-color: #222
+	/* -----設定 body 內的字體 */
 }
 
 /* 建立一個寬度一致且水平置中的容器，目的是讓每個區塊的內容寬度一致 */
 .container {
 	width: 75%;
 	margin-right: auto;
-	background-color: #333
+	margin-left: auto;
 }
 
 .h-100 {
@@ -27,18 +28,23 @@ body {
 	position: fixed;
 	left: 50%;
 	transform: translateX(-50%);
-	/* filter 多函式之間不用逗點 */
-	filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+
+	/*  filter (濾鏡-png輪廓陰影)  filter 多函式之間不用逗點 */
+	filter: 
+	drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+	  /* 如果是用 box shadow 則是盒子外有陰影 */
 	/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
 	z-index: 1;
 }
 
-#header .menu {
+#header>.menu {
+	/* 如果是用> 則只選到這個指定的menu */
 	width: 100%;
 	height: 60px;
 	text-align: center;
-	background: url('../images/nav-bg-full.jpg') repeat-x center;
+	background: url('../images/nav-bg-full.jpg')repeat-x center;
 	font-size: 0;
+	/* 取消幽靈空白用 */
 	position: absolute;
 	top: 25px;
 	z-index: -1;
@@ -46,23 +52,26 @@ body {
 
 #header .menu li {
 	display: inline-block;
-	padding: 1rem 0;
-	font-size: 1rem;
-	/* background: blue; */
+  /* 橫向排列 */
+  padding: 1rem 0;
+  /* 用inline-block 需取消幽靈空白 */
+  font-size: 1rem;
 }
 
 #header .menu li a {
 	color: white;
-	text-decoration: none;
-	display: block;
-	padding: 0.5rem 1.5rem;
-	transition: 0.5s;
-	/* background: red; */
+  text-decoration: none;
+  display: block;
+  /* inline 轉 block
+  (如果是inline無法把父元素撐開，
+  如果是inline-block會依字數不一樣寬) */
+  padding: 0.5rem 1.5rem;
+  transition: 0.5s;
 }
 
 #header .menu li a:hover {
-	background: rgba(255, 60, 0, 0.3);
-}
+	background-color: purple;
+  }
 
 /* 第三個 li 右側推移 15% 空間 */
 #header .menu li:nth-child(3) {
@@ -87,6 +96,7 @@ body {
 
 	position: absolute;
 	right: -10px;
+	top: 0;
 }
 
 #header .logo {
@@ -121,7 +131,10 @@ body {
 	font-size: 2.5rem;
 	font-style: italic;
 	color: yellow;
-	text-shadow: 0 0 5px rgba(0, 0, 0, 1), 0 0 10px rgba(0, 0, 0, 1), 0 0 15px rgba(0, 0, 0, 1);
+	text-shadow:
+		0 0 5px rgba(0, 0, 0, 1), 
+		0 0 10px rgba(0, 0, 0, 1), 
+		0 0 15px rgba(0, 0, 0, 1);
 }
 
 /* section02 ------------------------------------------------------------------------------- */
@@ -190,7 +203,7 @@ body {
 	/* background: lightgoldenrodyellow; */
 }
 
-/* 上方角色資料大區塊 */
+/* 上方角色資料大區塊，裡面子承 div */
 #section03 .role_info > div {
 	height: 100%;
 	/* 隱藏 div */
@@ -261,7 +274,7 @@ body {
 }
 
 /* ~ 同層全體選擇器，選擇第 3 個之後出現的 label 都選 */
-#section03 .role_list label:nth-child(3) ~ label {
+#section03 .role_list label:nth-child(4) ~ label {
 	filter: brightness(0.4);
 	cursor: auto;
 }
